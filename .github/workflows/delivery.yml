@@ -28,3 +28,10 @@ jobs:
           args: release --rm-dist
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+      -
+        name: get version
+        id: get_version
+        uses: battila7/get-version-action@v2
+      -
+        name: printing new version
+        run: make print-version version=${{ steps.get_version.outputs.version-without-v }}
