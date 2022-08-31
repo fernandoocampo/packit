@@ -17,15 +17,15 @@ func main() {
 	PrintHello()
 	uname := unix.Utsname{}
 	unix.Uname(&uname)
-	fmt.Println(arrayToString(uname.Nodename))
-	fmt.Println(arrayToString(uname.Release))
-	fmt.Println(arrayToString(uname.Sysname))
-	fmt.Println(arrayToString(uname.Version))
-	fmt.Println(arrayToString(uname.Machine))
+	fmt.Println(arrayToString(uname.Nodename[:]))
+	fmt.Println(arrayToString(uname.Release[:]))
+	fmt.Println(arrayToString(uname.Sysname[:]))
+	fmt.Println(arrayToString(uname.Version[:]))
+	fmt.Println(arrayToString(uname.Machine[:]))
 }
 
-func arrayToString(x [256]byte) string {
-	var buf [256]byte
+func arrayToString(x []byte) string {
+	buf := make([]byte, len(x))
 	for i, b := range x {
 		buf[i] = byte(b)
 	}
